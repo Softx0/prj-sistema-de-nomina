@@ -1,0 +1,80 @@
+﻿@model SISTEMANOMINA.EMPLEADO
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro de eliminar este registro?</h3>
+<div>
+    <h4>Empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("COD-Empleado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COD_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Cedula Empleado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CEDULA_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Nombre Completo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Salario Base")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SALARIO_MENSUAL_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Es Responsable?")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RESPONSABLE_AREA)
+        </dd>
+
+        <dt>
+            @Html.Label("Departamento")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPARTAMENTO.NOMBRE_DEPARTAMENTO)
+        </dd>
+
+        <dt>
+            @Html.Label("Puesto")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PUESTO.NOMBRE_PUESTO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver Atras", "Index")
+        </div>
+    }
+</div>

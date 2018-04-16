@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SISTEMANOMINA.EMPLEADO>
+
+@{
+    ViewBag.Title = "Empleado";
+}
+
+<h2>Empleado</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<form method="get">
+    <input type="text" id="Criterio" name="Criterio" />
+    <input type="submit" id="cmdBuscar" class="btn btn-success" value="Filtrar Empleados" />
+</form>
+<br>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Cod-Empleado")
+        </th>
+        <th>
+            @Html.Label("Cedula Empleado")
+        </th>
+        <th>
+            @Html.Label("Nombre Empleado")
+        </th>
+        <th>
+            @Html.Label("Salario Base")
+        </th>
+        <th>
+            @Html.Label("Es Responsable ?")
+        </th>
+        <th>
+            @Html.Label("Departamento")
+        </th>
+        <th>
+            @Html.Label("Puesto")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.COD_EMPLEADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEDULA_EMPLEADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_EMPLEADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SALARIO_MENSUAL_EMPLEADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RESPONSABLE_AREA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DEPARTAMENTO.NOMBRE_DEPARTAMENTO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PUESTO.NOMBRE_PUESTO)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_EMPLEADO }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.ID_EMPLEADO }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.ID_EMPLEADO })
+            </td>
+        </tr>
+    }
+
+</table>

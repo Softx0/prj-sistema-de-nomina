@@ -1,0 +1,33 @@
+﻿@model SISTEMANOMINA.MOVIMIENTO_EMPLEADO
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Movimiento Empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Monto a Pagar")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MONTO_PAGAR)
+        </dd>
+
+        <dt>
+            @Html.Label("COD-Empleado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADO.COD_EMPLEADO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Volver Atras", "Index")
+</p>

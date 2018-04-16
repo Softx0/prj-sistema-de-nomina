@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SISTEMANOMINA.DEPARTAMENTO>
+
+@{
+    ViewBag.Title = "Departamentos";
+}
+
+<h2>Departamento</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<form method="get">
+    <input type="text" id="Criterio" name="Criterio" />
+    <input type="submit" id="cmdBuscar" class="btn btn-success" value="Filtrar Departamentos" />
+</form>
+<br>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Departamento")
+        </th>
+        <th>
+            @Html.Label("Ubicacion Fisica")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UBICACION_FISICA_DEPARTAMENTO)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_DEPARTAMENTO }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.ID_DEPARTAMENTO }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.ID_DEPARTAMENTO })
+            </td>
+        </tr>
+    }
+
+</table>

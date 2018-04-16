@@ -1,0 +1,50 @@
+﻿@model IEnumerable<SISTEMANOMINA.REGISTRO_TRANSACCION_DEDUCCION>
+
+@{
+    ViewBag.Title = "Registro de Deducciones";
+}
+
+<h2>Registro de Deducciones</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<form method="get">
+    <input type="text" id="Criterio" name="Criterio" />
+    <input type="submit" id="cmdBuscar" class="btn btn-success" value="Filtrar Deducciones" />
+</form>
+<br>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Empleado")
+        </th>
+        <th>
+            @Html.Label("Monto")
+        </th>
+        <th>
+            @Html.Label("Fecha")
+        </th>
+        <th>
+            @Html.Label("Deduccion")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLEADO.NOMBRE_EMPLEADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MONTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_DE_DEDUCCION.NOMBRE_TIPO_DEDUCCION)
+        </td>
+    </tr>
+}
+</table>

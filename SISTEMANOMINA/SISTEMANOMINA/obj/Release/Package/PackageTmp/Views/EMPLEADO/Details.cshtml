@@ -1,0 +1,74 @@
+﻿@model SISTEMANOMINA.EMPLEADO
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("COD-Empleado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COD_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Cedula Empleado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CEDULA_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Nombre Completo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Salario Base")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SALARIO_MENSUAL_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Es Responsable?")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RESPONSABLE_AREA)
+        </dd>
+
+        <dt>
+            @Html.Label("Departamento")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPARTAMENTO.NOMBRE_DEPARTAMENTO)
+        </dd>
+
+        <dt>
+            @Html.Label("Puesto")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PUESTO.NOMBRE_PUESTO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_EMPLEADO }) |
+    @Html.ActionLink("Volver Atras", "Index")
+</p>

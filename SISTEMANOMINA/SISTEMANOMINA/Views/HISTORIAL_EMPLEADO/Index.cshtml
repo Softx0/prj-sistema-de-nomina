@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SISTEMANOMINA.HISTORIAL_EMPLEADO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Historial Empleado</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<form method="get">
+    <input type="text" id="Criterio" name="Criterio" />
+    <input type="submit" id="cmdBuscar" class="btn btn-success" value="Filtrar Historial" />
+</form>
+<br>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Empleado")
+        </th>
+        <th>
+            @Html.Label("Ingresos & Deducciones")
+        </th>
+        <th>
+            @Html.Label("Monto")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_EMPLEADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIPO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MONTO)
+            </td>
+        </tr>
+    }
+</table>

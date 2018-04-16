@@ -1,0 +1,74 @@
+﻿@model SISTEMANOMINA.REGISTRO_TRANSACCION_INGRESO
+
+@{
+    ViewBag.Title = "Edicion";
+}
+
+<h2>Edicion</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Registro de Transacciones de Ingreso</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID_TRANSACCION_INGRESO)
+
+        <div class="form-group">
+            <div class="col-md-1">
+                @Html.Label("Empleado")
+            </div>
+                <div class="col-md-10">
+                    @Html.DropDownList("ID_EMPLEADO", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ID_EMPLEADO, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-1">
+                    @Html.Label("Ingreso")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TIPO_INGRESO, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TIPO_INGRESO, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-1">
+                    @Html.Label("Fecha")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FECHA, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FECHA, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-1">
+                    @Html.Label("Monto Aumentado")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MONTO, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MONTO, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-warning" />
+                </div>
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Volver Atras", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

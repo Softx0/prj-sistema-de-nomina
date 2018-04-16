@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SISTEMANOMINA.EMP_DEP>
+
+@{
+    ViewBag.Title = "Empleado por Departamento";
+}
+
+<h2>Empleado por Departamento</h2>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Empleado")
+        </th>
+        <th>
+            @Html.Label("Departamento")
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_EMPLEADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
+        </td>
+    </tr>
+}
+
+</table>

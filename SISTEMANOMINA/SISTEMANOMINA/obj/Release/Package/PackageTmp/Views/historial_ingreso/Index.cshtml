@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SISTEMANOMINA.historial_ingreso>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Crear</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Empleado")
+        </th>
+
+        <th>
+            @Html.Label("Ingreso")
+        </th>
+
+        <th>
+            @Html.Label("Monto Aumentado")
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE_EMPLEADO)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_INGRESO)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.MONTO_INGRESO)
+        </td>
+    </tr>
+}
+</table>

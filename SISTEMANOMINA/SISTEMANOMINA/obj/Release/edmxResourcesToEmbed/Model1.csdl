@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SISTEMA_DE_NOMINAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DEPARTAMENTO">
+    <Key>
+      <PropertyRef Name="ID_DEPARTAMENTO" />
+    </Key>
+    <Property Name="ID_DEPARTAMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_DEPARTAMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UBICACION_FISICA_DEPARTAMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_EMPLEADO_DEPARTAMENTO1" FromRole="DEPARTAMENTO" ToRole="EMPLEADO" />
+  </EntityType>
+  <EntityType Name="EMPLEADO">
+    <Key>
+      <PropertyRef Name="ID_EMPLEADO" />
+    </Key>
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="COD_EMPLEADO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CEDULA_EMPLEADO" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE_EMPLEADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_DEPARTAMENTO" Type="Int32" Nullable="false" />
+    <Property Name="ID_PUESTO" Type="Int32" Nullable="false" />
+    <Property Name="SALARIO_MENSUAL_EMPLEADO" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="RESPONSABLE_AREA" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.FK_EMPLEADO_DEPARTAMENTO1" FromRole="EMPLEADO" ToRole="DEPARTAMENTO" />
+    <NavigationProperty Name="PUESTO" Relationship="Self.FK_EMPLEADO_PUESTO" FromRole="EMPLEADO" ToRole="PUESTO" />
+    <NavigationProperty Name="MOVIMIENTO_EMPLEADO" Relationship="Self.FK_MOVIMIENTO_EMPLEADO_EMPLEADO" FromRole="EMPLEADO" ToRole="MOVIMIENTO_EMPLEADO" />
+    <NavigationProperty Name="REGISTRO_TRANSACCION_DEDUCCION" Relationship="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO" FromRole="EMPLEADO" ToRole="REGISTRO_TRANSACCION_DEDUCCION" />
+    <NavigationProperty Name="REGISTRO_TRANSACCION_INGRESO" Relationship="SISTEMA_DE_NOMINAModel.FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO" FromRole="EMPLEADO" ToRole="REGISTRO_TRANSACCION_INGRESO" />
+  </EntityType>
+  <EntityType Name="MOVIMIENTO_EMPLEADO">
+    <Key>
+      <PropertyRef Name="ID_MOVIMIENTO" />
+    </Key>
+    <Property Name="ID_MOVIMIENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+    <Property Name="MONTO_PAGAR" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_MOVIMIENTO_EMPLEADO_EMPLEADO" FromRole="MOVIMIENTO_EMPLEADO" ToRole="EMPLEADO" />
+  </EntityType>
+  <EntityType Name="NIVEL_RIESGO">
+    <Key>
+      <PropertyRef Name="ID_NIVEL_RIESGO" />
+    </Key>
+    <Property Name="ID_NIVEL_RIESGO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TIPO_RIESGO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PUESTO" Relationship="Self.FK_PUESTO_NIVEL_RIESGO" FromRole="NIVEL_RIESGO" ToRole="PUESTO" />
+  </EntityType>
+  <EntityType Name="PUESTO">
+    <Key>
+      <PropertyRef Name="ID_PUESTO" />
+    </Key>
+    <Property Name="ID_PUESTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_PUESTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_NIVEL_RIESGO" Type="Int32" Nullable="false" />
+    <Property Name="NIVEL_SALARIO_MIN" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="NIVEL_SALARIO_MAX" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_EMPLEADO_PUESTO" FromRole="PUESTO" ToRole="EMPLEADO" />
+    <NavigationProperty Name="NIVEL_RIESGO" Relationship="Self.FK_PUESTO_NIVEL_RIESGO" FromRole="PUESTO" ToRole="NIVEL_RIESGO" />
+  </EntityType>
+  <EntityType Name="REGISTRO_TRANSACCION_DEDUCCION">
+    <Key>
+      <PropertyRef Name="ID_TRANSACCION_DEDUCCION" />
+    </Key>
+    <Property Name="ID_TRANSACCION_DEDUCCION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+    <Property Name="ID_TIPO_DEDUCCION" Type="Int32" Nullable="false" />
+    <Property Name="FECHA" Type="DateTime" Precision="3" />
+    <Property Name="MONTO" Type="Decimal" Precision="18" Scale="4" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO" FromRole="REGISTRO_TRANSACCION_DEDUCCION" ToRole="EMPLEADO" />
+    <NavigationProperty Name="TIPO_DE_DEDUCCION" Relationship="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION" FromRole="REGISTRO_TRANSACCION_DEDUCCION" ToRole="TIPO_DE_DEDUCCION" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TIPO_DE_DEDUCCION">
+    <Key>
+      <PropertyRef Name="ID_TIPO_DEDUCCION" />
+    </Key>
+    <Property Name="ID_TIPO_DEDUCCION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_TIPO_DEDUCCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PORCENTAJE" Type="Decimal" Precision="18" Scale="4" />
+    <NavigationProperty Name="REGISTRO_TRANSACCION_DEDUCCION" Relationship="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION" FromRole="TIPO_DE_DEDUCCION" ToRole="REGISTRO_TRANSACCION_DEDUCCION" />
+  </EntityType>
+  <Association Name="FK_EMPLEADO_DEPARTAMENTO1">
+    <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTAMENTO">
+        <PropertyRef Name="ID_DEPARTAMENTO" />
+      </Principal>
+      <Dependent Role="EMPLEADO">
+        <PropertyRef Name="ID_DEPARTAMENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLEADO_PUESTO">
+    <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="1" />
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PUESTO">
+        <PropertyRef Name="ID_PUESTO" />
+      </Principal>
+      <Dependent Role="EMPLEADO">
+        <PropertyRef Name="ID_PUESTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MOVIMIENTO_EMPLEADO_EMPLEADO">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="MOVIMIENTO_EMPLEADO" Type="Self.MOVIMIENTO_EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Principal>
+      <Dependent Role="MOVIMIENTO_EMPLEADO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="REGISTRO_TRANSACCION_DEDUCCION" Type="Self.REGISTRO_TRANSACCION_DEDUCCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Principal>
+      <Dependent Role="REGISTRO_TRANSACCION_DEDUCCION">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PUESTO_NIVEL_RIESGO">
+    <End Role="NIVEL_RIESGO" Type="Self.NIVEL_RIESGO" Multiplicity="1" />
+    <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NIVEL_RIESGO">
+        <PropertyRef Name="ID_NIVEL_RIESGO" />
+      </Principal>
+      <Dependent Role="PUESTO">
+        <PropertyRef Name="ID_NIVEL_RIESGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION">
+    <End Role="TIPO_DE_DEDUCCION" Type="Self.TIPO_DE_DEDUCCION" Multiplicity="1" />
+    <End Role="REGISTRO_TRANSACCION_DEDUCCION" Type="Self.REGISTRO_TRANSACCION_DEDUCCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_DE_DEDUCCION">
+        <PropertyRef Name="ID_TIPO_DEDUCCION" />
+      </Principal>
+      <Dependent Role="REGISTRO_TRANSACCION_DEDUCCION">
+        <PropertyRef Name="ID_TIPO_DEDUCCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SISTEMA_DE_NOMINAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" />
+    <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" />
+    <EntitySet Name="MOVIMIENTO_EMPLEADO" EntityType="Self.MOVIMIENTO_EMPLEADO" />
+    <EntitySet Name="NIVEL_RIESGO" EntityType="Self.NIVEL_RIESGO" />
+    <EntitySet Name="PUESTO" EntityType="Self.PUESTO" />
+    <EntitySet Name="REGISTRO_TRANSACCION_DEDUCCION" EntityType="Self.REGISTRO_TRANSACCION_DEDUCCION" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TIPO_DE_DEDUCCION" EntityType="Self.TIPO_DE_DEDUCCION" />
+    <AssociationSet Name="FK_EMPLEADO_DEPARTAMENTO1" Association="Self.FK_EMPLEADO_DEPARTAMENTO1">
+      <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLEADO_PUESTO" Association="Self.FK_EMPLEADO_PUESTO">
+      <End Role="PUESTO" EntitySet="PUESTO" />
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MOVIMIENTO_EMPLEADO_EMPLEADO" Association="Self.FK_MOVIMIENTO_EMPLEADO_EMPLEADO">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="MOVIMIENTO_EMPLEADO" EntitySet="MOVIMIENTO_EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO" Association="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="REGISTRO_TRANSACCION_DEDUCCION" EntitySet="REGISTRO_TRANSACCION_DEDUCCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PUESTO_NIVEL_RIESGO" Association="Self.FK_PUESTO_NIVEL_RIESGO">
+      <End Role="NIVEL_RIESGO" EntitySet="NIVEL_RIESGO" />
+      <End Role="PUESTO" EntitySet="PUESTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION" Association="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION">
+      <End Role="TIPO_DE_DEDUCCION" EntitySet="TIPO_DE_DEDUCCION" />
+      <End Role="REGISTRO_TRANSACCION_DEDUCCION" EntitySet="REGISTRO_TRANSACCION_DEDUCCION" />
+    </AssociationSet>
+    <EntitySet Name="Historial_Deducciones" EntityType="SISTEMA_DE_NOMINAModel.Historial_Deducciones" />
+    <EntitySet Name="EMP_CARGO" EntityType="SISTEMA_DE_NOMINAModel.EMP_CARGO" />
+    <EntitySet Name="EMP_DEP" EntityType="SISTEMA_DE_NOMINAModel.EMP_DEP" />
+    <EntitySet Name="EMP_RESPONSABLES" EntityType="SISTEMA_DE_NOMINAModel.EMP_RESPONSABLES" />
+    <EntitySet Name="PUESTO_RIESGO" EntityType="SISTEMA_DE_NOMINAModel.PUESTO_RIESGO" />
+    <EntitySet Name="REGISTRO_TRANSACCION_INGRESO" EntityType="SISTEMA_DE_NOMINAModel.REGISTRO_TRANSACCION_INGRESO" />
+    <AssociationSet Name="FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO" Association="SISTEMA_DE_NOMINAModel.FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="REGISTRO_TRANSACCION_INGRESO" EntitySet="REGISTRO_TRANSACCION_INGRESO" />
+    </AssociationSet>
+    <EntitySet Name="historial_ingreso" EntityType="SISTEMA_DE_NOMINAModel.historial_ingreso" />
+    <EntitySet Name="HISTORIAL_EMPLEADO" EntityType="SISTEMA_DE_NOMINAModel.HISTORIAL_EMPLEADO" />
+  </EntityContainer>
+  <EntityType Name="Historial_Deducciones">
+    <Key>
+      <PropertyRef Name="NOMBRE_EMPLEADO" />
+      <PropertyRef Name="NOMBRE_TIPO_DEDUCCION" />
+      <PropertyRef Name="MONTO_DEDUCCION" />
+    </Key>
+    <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE_TIPO_DEDUCCION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MONTO_DEDUCCION" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="EMP_CARGO">
+    <Key>
+      <PropertyRef Name="NOMBRE_EMPLEADO" />
+      <PropertyRef Name="NOMBRE_PUESTO" />
+    </Key>
+    <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE_PUESTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EMP_DEP">
+    <Key>
+      <PropertyRef Name="ID_EMPLEADO" />
+      <PropertyRef Name="NOMBRE_EMPLEADO" />
+      <PropertyRef Name="NOMBRE_DEPARTAMENTO" />
+    </Key>
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+    <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE_DEPARTAMENTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EMP_RESPONSABLES">
+    <Key>
+      <PropertyRef Name="ID_EMPLEADO" />
+      <PropertyRef Name="NOMBRE_EMPLEADO" />
+      <PropertyRef Name="SALARIO_MENSUAL_EMPLEADO" />
+      <PropertyRef Name="NOMBRE_DEPARTAMENTO" />
+      <PropertyRef Name="RESPONSABLE_AREA" />
+    </Key>
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+    <Property Name="COD_EMPLEADO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SALARIO_MENSUAL_EMPLEADO" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="NOMBRE_DEPARTAMENTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RESPONSABLE_AREA" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PUESTO_RIESGO">
+    <Key>
+      <PropertyRef Name="NOMBRE_PUESTO" />
+    </Key>
+    <Property Name="NOMBRE_PUESTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO_RIESGO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="REGISTRO_TRANSACCION_INGRESO">
+    <Key>
+      <PropertyRef Name="ID_TRANSACCION_INGRESO" />
+    </Key>
+    <Property Name="ID_TRANSACCION_INGRESO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+    <Property Name="TIPO_INGRESO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FECHA" Type="DateTime" Precision="3" />
+    <Property Name="MONTO" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <NavigationProperty Name="EMPLEADO" Relationship="SISTEMA_DE_NOMINAModel.FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO" FromRole="REGISTRO_TRANSACCION_INGRESO" ToRole="EMPLEADO" />
+  </EntityType>
+  <Association Name="FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO">
+    <End Type="SISTEMA_DE_NOMINAModel.EMPLEADO" Role="EMPLEADO" Multiplicity="1" />
+    <End Type="SISTEMA_DE_NOMINAModel.REGISTRO_TRANSACCION_INGRESO" Role="REGISTRO_TRANSACCION_INGRESO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Principal>
+      <Dependent Role="REGISTRO_TRANSACCION_INGRESO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="historial_ingreso">
+    <Key>
+      <PropertyRef Name="NOMBRE_EMPLEADO" />
+      <PropertyRef Name="TIPO_INGRESO" />
+      <PropertyRef Name="MONTO_INGRESO" />
+    </Key>
+    <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO_INGRESO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MONTO_INGRESO" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+  </EntityType>
+  <EntityType Name="HISTORIAL_EMPLEADO">
+    <Key>
+      <PropertyRef Name="TIPO" />
+      <PropertyRef Name="NOMBRE_EMPLEADO" />
+    </Key>
+    <Property Name="TIPO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MONTO" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

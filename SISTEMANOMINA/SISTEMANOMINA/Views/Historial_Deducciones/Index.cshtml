@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SISTEMANOMINA.Historial_Deducciones>
+
+@{
+    ViewBag.Title = "Historial de Deducciones";
+}
+
+<h2>Historial de Deducciones</h2>
+<br>
+<form method="get">
+    <input type="text" id="Criterio" name="Criterio" />
+    <input type="submit" id="cmdBuscar" class="btn btn-success" value="Filtrar" />
+</form>
+<br>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Empleados")
+        </th>
+        <th>
+            @Html.Label("Deducciones")
+        </th>
+        <th>
+            @Html.Label("Monto")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_EMPLEADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_TIPO_DEDUCCION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MONTO_DEDUCCION)
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,50 @@
+﻿@model SISTEMANOMINA.PUESTO
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Puesto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Puesto")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_PUESTO)
+        </dd>
+
+        <dt>
+            @Html.Label("Salario Minimo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIVEL_SALARIO_MIN)
+        </dd>
+
+        <dt>
+            @Html.Label("Salario Maximo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIVEL_SALARIO_MAX)
+        </dd>
+
+        <dt>
+            @Html.Label("Riesgo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIVEL_RIESGO.TIPO_RIESGO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edicion", "Edit", new { id = Model.ID_PUESTO }) |
+    @Html.ActionLink("Volver Atras", "Index")
+</p>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SISTEMANOMINA.EMP_RESPONSABLES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Responsables de Departamentos</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("COD-Empleado")
+        </th>
+        <th>
+            @Html.Label("Departamento")
+        </th>
+        <th>
+            @Html.Label("Responsable")
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.COD_EMPLEADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE_DEPARTAMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RESPONSABLE_AREA)
+        </td>
+    </tr>
+}
+</table>

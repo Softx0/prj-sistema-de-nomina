@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-SISTEMANOMINA-20180405083433.mdf;Initial Catalog=aspnet-SISTEMANOMINA-20180405083433;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ingva\\Desktop\\UNIVERSIDAD\\5to\ Cuatrimestre\\Prog\.\ Web\ INF244\\NOMINA\\SISTEMANOMINA\\SISTEMANOMINA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="SISTEMA_DE_NOMINAEntities-Web.config Connection String" description="SISTEMA_DE_NOMINAEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-SRHE16D;initial catalog=SISTEMA_DE_NOMINA;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ingva\\Desktop\\UNIVERSIDAD\\5to\ Cuatrimestre\\Prog\.\ Web\ INF244\\NOMINA\\SISTEMANOMINA\\SISTEMANOMINA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SISTEMA_DE_NOMINAEntities']/@connectionString" />
+  </parameter>
+  <parameter name="SISTEMA_DE_NOMINAConnectionString-Web.config Connection String" description="SISTEMA_DE_NOMINAConnectionString Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Server=tcp:sistemarrhh.database.windows.net,1433;Initial Catalog=Sistema_De_Nomina;Persist Security Info=False;User ID=eduardovalen;Password=123qwezxc@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ingva\\Desktop\\UNIVERSIDAD\\5to\ Cuatrimestre\\Prog\.\ Web\ INF244\\NOMINA\\SISTEMANOMINA\\SISTEMANOMINA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SISTEMA_DE_NOMINAConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

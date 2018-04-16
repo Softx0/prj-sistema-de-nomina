@@ -1,0 +1,56 @@
+﻿@model SISTEMANOMINA.REGISTRO_TRANSACCION_INGRESO
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro de que va a eliminar este registro?</h3>
+<div>
+    <h4>Registro de Transacciones de Ingreso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Ingresos")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_INGRESO)
+        </dd>
+
+        <dt>
+            @Html.Label("Fecha")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA)
+        </dd>
+
+        <dt>
+            @Html.Label("Monto Aumentado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MONTO)
+        </dd>
+
+        <dt>
+            @Html.Label("Empleados")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADO.NOMBRE_EMPLEADO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver Atras", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SISTEMANOMINA.PUESTO_RIESGO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Puesto por Riesgo</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Puesto")
+        </th>
+        <th>
+            @Html.Label("Riesgo")
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE_PUESTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_RIESGO)
+        </td>
+    </tr>
+}
+
+</table>

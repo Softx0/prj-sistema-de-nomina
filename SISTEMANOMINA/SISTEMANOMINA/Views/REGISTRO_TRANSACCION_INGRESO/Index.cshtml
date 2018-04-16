@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SISTEMANOMINA.REGISTRO_TRANSACCION_INGRESO>
+
+@{
+    ViewBag.Title = "Registro de Transacciones de Ingreso";
+}
+
+<h2>Registro de Transacciones de Ingreso</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<form method="get">
+    <input type="text" id="Criterio" name="Criterio" />
+    <input type="submit" id="cmdBuscar" class="btn btn-success" value="Filtrar Ingresos" />
+</form>
+<br>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Empleados")
+        </th>
+        <th>
+            @Html.Label("Ingresos")
+        </th>
+        <th>
+            @Html.Label("Monto Aumentado")
+        </th>
+        <th>
+            @Html.Label("Fecha de Realizacion")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.EMPLEADO.NOMBRE_EMPLEADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIPO_INGRESO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MONTO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHA)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_TRANSACCION_INGRESO }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.ID_TRANSACCION_INGRESO }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID_TRANSACCION_INGRESO })
+            </td>
+        </tr>
+    }
+
+</table>

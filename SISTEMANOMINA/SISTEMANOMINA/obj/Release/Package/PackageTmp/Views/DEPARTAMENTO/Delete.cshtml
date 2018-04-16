@@ -1,0 +1,40 @@
+﻿@model SISTEMANOMINA.DEPARTAMENTO
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro de Eliminar este registro?</h3>
+<div>
+    <h4>Departamento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Departamento")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_DEPARTAMENTO)
+        </dd>
+
+        <dt>
+            @Html.Label("Ubicacion")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UBICACION_FISICA_DEPARTAMENTO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver Atras", "Index")
+        </div>
+    }
+</div>

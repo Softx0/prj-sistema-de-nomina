@@ -1,0 +1,40 @@
+﻿@model SISTEMANOMINA.MOVIMIENTO_EMPLEADO
+
+@{
+    ViewBag.Title = "Borrar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro de eliminar este registro?</h3>
+<div>
+    <h4>MOVIMIENTO_EMPLEADO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Monto a Pagar")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MONTO_PAGAR)
+        </dd>
+
+        <dt>
+            @Html.Label("COD-Empleado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADO.NOMBRE_EMPLEADO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver Atras", "Index")
+        </div>
+    }
+</div>

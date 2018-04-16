@@ -1,0 +1,42 @@
+﻿@model SISTEMANOMINA.REGISTRO_TRANSACCION_DEDUCCION
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Registro de Deducciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Fecha")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA)
+        </dd>
+
+        <dt>
+            @Html.Label("COD-Empleado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADO.COD_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Deduccion")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_DE_DEDUCCION.NOMBRE_TIPO_DEDUCCION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_TRANSACCION_DEDUCCION }) |
+    @Html.ActionLink("Volver Atras", "Index")
+</p>

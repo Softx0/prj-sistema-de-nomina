@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SISTEMANOMINA.EMP_CARGO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Empleado por Cargo</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Empleado")
+        </th>
+        <th>
+            @Html.Label("Cargo")
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE_EMPLEADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE_PUESTO)
+        </td>
+    </tr>
+}
+</table>

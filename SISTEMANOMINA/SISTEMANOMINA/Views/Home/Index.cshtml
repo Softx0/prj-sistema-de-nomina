@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Sistema de Nomina";
+}
+<div class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="mySlides">
+            <img src="~/Portada.jpg" class="rounded" alt="Portada" style="width:100%" />
+        </div>
+        <div class="mySlides">
+            <img src="~/rrhh.png" class="rounded" alt="empleado" style="width:100%" />
+        </div>
+        <div class="mySlides">
+            <img src="~/nomina-banner.jpg" class="rounded" alt="Dinero" style="width:100%" height="400" />
+        </div>
+    </div>
+</div>
+<center><h4 class="lead"><strong>Completo y eficaz, a tu disposicion! El Mejor del Mercado!</strong></h4></center>
+<div class="row">
+    <div class="col-md-4">
+            <a href="../EMPLEADO/Index">
+                <img src="~/Ejecutivo.jpeg" alt="empleado" style="width:100%">
+                <div class="caption">
+                    <center><h3><b>Crear Empleados</b></h3></center>
+                </div>
+            </a>
+    </div>
+
+    <div class="col-md-4">
+            <a href="../DEPARTAMENTO/Index">
+                <img src="~/Departamento.jpeg" alt="empleado" style="width:100%">
+                <div class="caption">
+                    <center><h3><b>Crear Departamentos</b></h3></center>
+                </div>
+            </a>
+    </div>
+
+    <div class="col-md-4">
+            <a href="../PUESTO/Index">
+                <img src="~/Puesto.jpeg" alt="empleado" style="width:100%">
+                <div class="caption">
+                    <center><h3><b>Crear Puestos</b></h3></center>
+                </div>
+            </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <a href="../REGISTRO_TRANSACCION_DEDUCCION/Index">
+            <img src="~/Registro_Deduccion.jpeg" alt="empleado" style="width:100%">
+            <div class="caption">
+               <center><h3><b>Asignar Deducciones</b></h3></center>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="../MOVIMIENTO_EMPLEADO/Index">
+            <img src="~/Pago.jpeg" alt="empleado" style="width:100%">
+            <div class="caption">
+                <center><h3><b>Pago Neto por Empleados</b></h3></center>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="../REGISTRO_TRANSACCION_INGRESO/Index">
+            <img src="~/ingreso.jpg" alt="empleado" style="width:100%">
+            <div class="caption">
+             <center><h3><b>Asignar Ingresos</b></h3></center>   
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <a href="../EMP_CARGO/Index">
+            <img src="~/Puesto1.jpeg" alt="empleado" style="width:100%">
+            <div class="caption">
+                <center><h3><b>Empleado por Cargos</b></h3></center>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="../EMP_RESPONSABLES/Index">
+            <img src="~/Responsable.jpeg" alt="empleado" style="width:100%">
+            <div class="caption">
+               <center><h3><b>Responsables por Departamentos</b></h3></center>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="../PUESTO_RIESGO/Index">
+            <img src="~/riesgo.jpeg" alt="empleado" style="width:100%">
+            <div class="caption">
+               <center><h3><b>Riesgo por Puestos</b></h3></center>
+            </div>
+        </a>
+    </div>
+</div>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none"; 
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1} 
+    slides[slideIndex-1].style.display = "block"; 
+    setTimeout(showSlides, 3000);
+    // Change image every 2 seconds
+}</script>

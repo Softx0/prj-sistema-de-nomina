@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SISTEMA_DE_NOMINAModelStoreContainer" CdmEntityContainer="SISTEMA_DE_NOMINAEntities">
+    <EntitySetMapping Name="DEPARTAMENTO">
+      <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.DEPARTAMENTO">
+        <MappingFragment StoreEntitySet="DEPARTAMENTO">
+          <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+          <ScalarProperty Name="NOMBRE_DEPARTAMENTO" ColumnName="NOMBRE_DEPARTAMENTO" />
+          <ScalarProperty Name="UBICACION_FISICA_DEPARTAMENTO" ColumnName="UBICACION_FISICA_DEPARTAMENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLEADO">
+      <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.EMPLEADO">
+        <MappingFragment StoreEntitySet="EMPLEADO">
+          <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+          <ScalarProperty Name="COD_EMPLEADO" ColumnName="COD_EMPLEADO" />
+          <ScalarProperty Name="CEDULA_EMPLEADO" ColumnName="CEDULA_EMPLEADO" />
+          <ScalarProperty Name="NOMBRE_EMPLEADO" ColumnName="NOMBRE_EMPLEADO" />
+          <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+          <ScalarProperty Name="ID_PUESTO" ColumnName="ID_PUESTO" />
+          <ScalarProperty Name="SALARIO_MENSUAL_EMPLEADO" ColumnName="SALARIO_MENSUAL_EMPLEADO" />
+          <ScalarProperty Name="RESPONSABLE_AREA" ColumnName="RESPONSABLE_AREA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOVIMIENTO_EMPLEADO">
+      <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.MOVIMIENTO_EMPLEADO">
+        <MappingFragment StoreEntitySet="MOVIMIENTO_EMPLEADO">
+          <ScalarProperty Name="ID_MOVIMIENTO" ColumnName="ID_MOVIMIENTO" />
+          <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+          <ScalarProperty Name="MONTO_PAGAR" ColumnName="MONTO_PAGAR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NIVEL_RIESGO">
+      <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.NIVEL_RIESGO">
+        <MappingFragment StoreEntitySet="NIVEL_RIESGO">
+          <ScalarProperty Name="ID_NIVEL_RIESGO" ColumnName="ID_NIVEL_RIESGO" />
+          <ScalarProperty Name="TIPO_RIESGO" ColumnName="TIPO_RIESGO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PUESTO">
+      <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.PUESTO">
+        <MappingFragment StoreEntitySet="PUESTO">
+          <ScalarProperty Name="ID_PUESTO" ColumnName="ID_PUESTO" />
+          <ScalarProperty Name="NOMBRE_PUESTO" ColumnName="NOMBRE_PUESTO" />
+          <ScalarProperty Name="ID_NIVEL_RIESGO" ColumnName="ID_NIVEL_RIESGO" />
+          <ScalarProperty Name="NIVEL_SALARIO_MIN" ColumnName="NIVEL_SALARIO_MIN" />
+          <ScalarProperty Name="NIVEL_SALARIO_MAX" ColumnName="NIVEL_SALARIO_MAX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGISTRO_TRANSACCION_DEDUCCION">
+      <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.REGISTRO_TRANSACCION_DEDUCCION">
+        <MappingFragment StoreEntitySet="REGISTRO_TRANSACCION_DEDUCCION">
+          <ScalarProperty Name="ID_TRANSACCION_DEDUCCION" ColumnName="ID_TRANSACCION_DEDUCCION" />
+          <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+          <ScalarProperty Name="ID_TIPO_DEDUCCION" ColumnName="ID_TIPO_DEDUCCION" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_DE_DEDUCCION">
+      <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.TIPO_DE_DEDUCCION">
+        <MappingFragment StoreEntitySet="TIPO_DE_DEDUCCION">
+          <ScalarProperty Name="ID_TIPO_DEDUCCION" ColumnName="ID_TIPO_DEDUCCION" />
+          <ScalarProperty Name="NOMBRE_TIPO_DEDUCCION" ColumnName="NOMBRE_TIPO_DEDUCCION" />
+          <ScalarProperty Name="PORCENTAJE" ColumnName="PORCENTAJE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Historial_Deducciones">
+      <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.Historial_Deducciones">
+        <MappingFragment StoreEntitySet="Historial_Deducciones">
+          <ScalarProperty Name="MONTO_DEDUCCION" ColumnName="MONTO_DEDUCCION" />
+          <ScalarProperty Name="NOMBRE_TIPO_DEDUCCION" ColumnName="NOMBRE_TIPO_DEDUCCION" />
+          <ScalarProperty Name="NOMBRE_EMPLEADO" ColumnName="NOMBRE_EMPLEADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

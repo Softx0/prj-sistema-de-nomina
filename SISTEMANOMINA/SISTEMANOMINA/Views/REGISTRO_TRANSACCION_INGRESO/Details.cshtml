@@ -1,0 +1,50 @@
+﻿@model SISTEMANOMINA.REGISTRO_TRANSACCION_INGRESO
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Registro de Transacciones de Ingreso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Empleado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADO.NOMBRE_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Ingresos")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_INGRESO)
+        </dd>
+
+        <dt>
+            @Html.Label("Monto Aumento")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MONTO)
+        </dd>
+
+        <dt>
+            @Html.Label("Fecha")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edicion", "Edit", new { id = Model.ID_TRANSACCION_INGRESO }) |
+    @Html.ActionLink("Volver Atras", "Index")
+</p>

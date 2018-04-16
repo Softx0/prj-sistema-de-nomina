@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SISTEMA_DE_NOMINADataSet" targetNamespace="http://tempuri.org/SISTEMA_DE_NOMINADataSet.xsd" xmlns:mstns="http://tempuri.org/SISTEMA_DE_NOMINADataSet.xsd" xmlns="http://tempuri.org/SISTEMA_DE_NOMINADataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="SISTEMA_DE_NOMINAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="SISTEMA_DE_NOMINAConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.SISTEMA_DE_NOMINAConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="HISTORIAL_EMPLEADOTableAdapter" GeneratorDataComponentClassName="HISTORIAL_EMPLEADOTableAdapter" Name="HISTORIAL_EMPLEADO" UserDataComponentName="HISTORIAL_EMPLEADOTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SISTEMA_DE_NOMINAConnectionString (Web.config)" DbObjectName="SISTEMA_DE_NOMINA.dbo.HISTORIAL_EMPLEADO" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT NOMBRE_EMPLEADO, TIPO, MONTO FROM dbo.HISTORIAL_EMPLEADO</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="NOMBRE_EMPLEADO" DataSetColumn="NOMBRE_EMPLEADO" />
+              <Mapping SourceColumn="TIPO" DataSetColumn="TIPO" />
+              <Mapping SourceColumn="MONTO" DataSetColumn="MONTO" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SISTEMA_DE_NOMINADataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="SISTEMA_DE_NOMINADataSet" msprop:Generator_UserDSName="SISTEMA_DE_NOMINADataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="HISTORIAL_EMPLEADO" msprop:Generator_TableClassName="HISTORIAL_EMPLEADODataTable" msprop:Generator_TableVarName="tableHISTORIAL_EMPLEADO" msprop:Generator_TablePropName="HISTORIAL_EMPLEADO" msprop:Generator_RowDeletingName="HISTORIAL_EMPLEADORowDeleting" msprop:Generator_RowChangingName="HISTORIAL_EMPLEADORowChanging" msprop:Generator_RowEvHandlerName="HISTORIAL_EMPLEADORowChangeEventHandler" msprop:Generator_RowDeletedName="HISTORIAL_EMPLEADORowDeleted" msprop:Generator_UserTableName="HISTORIAL_EMPLEADO" msprop:Generator_RowChangedName="HISTORIAL_EMPLEADORowChanged" msprop:Generator_RowEvArgName="HISTORIAL_EMPLEADORowChangeEvent" msprop:Generator_RowClassName="HISTORIAL_EMPLEADORow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NOMBRE_EMPLEADO" msprop:Generator_ColumnVarNameInTable="columnNOMBRE_EMPLEADO" msprop:Generator_ColumnPropNameInRow="NOMBRE_EMPLEADO" msprop:Generator_ColumnPropNameInTable="NOMBRE_EMPLEADOColumn" msprop:Generator_UserColumnName="NOMBRE_EMPLEADO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TIPO" msprop:Generator_ColumnVarNameInTable="columnTIPO" msprop:Generator_ColumnPropNameInRow="TIPO" msprop:Generator_ColumnPropNameInTable="TIPOColumn" msprop:Generator_UserColumnName="TIPO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MONTO" msprop:Generator_ColumnVarNameInTable="columnMONTO" msprop:Generator_ColumnPropNameInRow="MONTO" msprop:Generator_ColumnPropNameInTable="MONTOColumn" msprop:Generator_UserColumnName="MONTO" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

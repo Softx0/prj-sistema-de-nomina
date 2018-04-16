@@ -1,0 +1,74 @@
+﻿@model SISTEMANOMINA.PUESTO
+
+@{
+    ViewBag.Title = "Edicion";
+}
+
+<h2>Edicion</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Puesto</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID_PUESTO)
+
+        <div class="form-group">
+            <div class="col-md-1">
+                @Html.Label("Puesto")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NOMBRE_PUESTO, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NOMBRE_PUESTO, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-1">
+                    @Html.Label("Riesgo")
+                </div>
+                <div class="col-md-10">
+                    @Html.DropDownList("ID_NIVEL_RIESGO", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ID_NIVEL_RIESGO, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-1">
+                    @Html.Label("Salario Minimo")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NIVEL_SALARIO_MIN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NIVEL_SALARIO_MIN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-1">
+                    @Html.Label("Salario Maximo")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NIVEL_SALARIO_MAX, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NIVEL_SALARIO_MAX, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-warning" />
+                </div>
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Volver Atras", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,56 @@
+﻿@model SISTEMANOMINA.REGISTRO_TRANSACCION_DEDUCCION
+
+@{
+    ViewBag.Title = "Borrar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro de que deseas eliminar este registro?</h3>
+<div>
+    <h4>Registro de Deducciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Fecha")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA)
+        </dd>
+
+        <dt>
+            @Html.Label("Monto a Descontar")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MONTO)
+        </dd>
+
+        <dt>
+            @Html.Label("COD-Empleado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADO.COD_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.Label("Deduccion")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_DE_DEDUCCION.NOMBRE_TIPO_DEDUCCION)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver Atras", "Index")
+        </div>
+    }
+</div>

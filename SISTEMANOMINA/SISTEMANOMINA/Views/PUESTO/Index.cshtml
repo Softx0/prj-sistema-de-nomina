@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SISTEMANOMINA.PUESTO>
+
+@{
+    ViewBag.Title = "Puesto";
+}
+
+<h2>Puesto</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<form method="get">
+    <input type="text" id="Criterio" name="Criterio" />
+    <input type="submit" id="cmdBuscar" class="btn btn-success" value="Filtrar Puestos" />
+</form>
+<br>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Puesto")
+        </th>
+        <th>
+            @Html.Label("Salario Minimo")
+        </th>
+        <th>
+            @Html.Label("Salario Maximo")
+        </th>
+        <th>
+            @Html.Label("Riesgo")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_PUESTO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NIVEL_SALARIO_MIN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NIVEL_SALARIO_MAX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NIVEL_RIESGO.TIPO_RIESGO)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_PUESTO }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.ID_PUESTO }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID_PUESTO })
+            </td>
+        </tr>
+    }
+
+</table>

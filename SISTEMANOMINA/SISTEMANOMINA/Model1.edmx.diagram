@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1b0af7c5cad640e8b247b60f31bd7205" Name="Diagram1">
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.DEPARTAMENTO" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.EMPLEADO" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.MOVIMIENTO_EMPLEADO" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.NIVEL_RIESGO" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.PUESTO" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.REGISTRO_TRANSACCION_DEDUCCION" Width="3.375" PointX="3.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.sysdiagrams" Width="1.5" PointX="0.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.TIPO_DE_DEDUCCION" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="SISTEMA_DE_NOMINAModel.FK_EMPLEADO_DEPARTAMENTO1" ManuallyRouted="false" />
+        <AssociationConnector Association="SISTEMA_DE_NOMINAModel.FK_EMPLEADO_PUESTO" ManuallyRouted="false" />
+        <AssociationConnector Association="SISTEMA_DE_NOMINAModel.FK_MOVIMIENTO_EMPLEADO_EMPLEADO" ManuallyRouted="false" />
+        <AssociationConnector Association="SISTEMA_DE_NOMINAModel.FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO" ManuallyRouted="false" />
+        <AssociationConnector Association="SISTEMA_DE_NOMINAModel.FK_PUESTO_NIVEL_RIESGO" ManuallyRouted="false" />
+        <AssociationConnector Association="SISTEMA_DE_NOMINAModel.FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.Historial_Deducciones" Width="1.875" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.EMP_CARGO" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.EMP_DEP" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.EMP_RESPONSABLES" Width="1.5" PointX="7.375" PointY="9.75" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.PUESTO_RIESGO" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.REGISTRO_TRANSACCION_INGRESO" Width="3" PointX="1.75" PointY="6.625" />
+        <AssociationConnector Association="SISTEMA_DE_NOMINAModel.FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.historial_ingreso" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="SISTEMA_DE_NOMINAModel.HISTORIAL_EMPLEADO" Width="1.5" PointX="7.375" PointY="2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

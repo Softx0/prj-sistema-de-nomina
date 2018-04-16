@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SISTEMANOMINA.TIPO_DE_DEDUCCION>
+
+@{
+    ViewBag.Title = "Deduccion";
+}
+
+<h2>Deduccion</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<form method="get">
+    <input type="text" id="Criterio" name="Criterio" />
+    <input type="submit" id="cmdBuscar" class="btn btn-success" value="Filtrar" />
+</form>
+<br>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Deduccion")
+        </th>
+        <th>
+            @Html.Label("Valor Deduccion")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_TIPO_DEDUCCION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PORCENTAJE)
+            </td>
+        </tr>
+    }
+
+</table>

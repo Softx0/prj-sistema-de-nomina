@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SISTEMANOMINA.MOVIMIENTO_EMPLEADO>
+
+@{
+    ViewBag.Title = "RRHH - Movimiento Empleado";
+}
+
+<h2>Movimiento Empleado</h2>
+<br/>
+<form method="get">
+    <input type="text" id="Criterio" name="Criterio" />
+    <input type="submit" id="cmdBuscar" class="btn btn-success" value="Buscar" />
+</form>
+<br>
+<div class="row">
+    <div class="col-lg-12">
+        <form method="get" action="../HISTORIAL_EMPLEADO/Index">
+            <input type="text" id="Criterio" name="Criterio" />
+            <input type="submit" id="cmdBuscarV" name="BuscarV" value="Detalle de Sueldo" class="btn btn-primary" />
+        </form>
+    </div>
+    <div class="col-lg-12">
+        <h3>@Html.ActionLink("Exportar a Excel", "exportaExcel")</h3>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Empleado")
+        </th>
+        <th>
+            @Html.Label("Monto a Pagar")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMPLEADO.NOMBRE_EMPLEADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MONTO_PAGAR)
+            </td>
+            <td>
+                @Html.ActionLink("Borrar", "Delete", new { id = item.ID_MOVIMIENTO })
+            </td>
+        </tr>
+    }
+
+</table>

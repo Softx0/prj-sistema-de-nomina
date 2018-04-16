@@ -1,0 +1,835 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SISTEMA_DE_NOMINAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="ID_DEPARTAMENTO" />
+          </Key>
+          <Property Name="ID_DEPARTAMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_DEPARTAMENTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UBICACION_FISICA_DEPARTAMENTO" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLEADO">
+          <Key>
+            <PropertyRef Name="ID_EMPLEADO" />
+          </Key>
+          <Property Name="ID_EMPLEADO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_EMPLEADO" Type="varchar" MaxLength="10" />
+          <Property Name="CEDULA_EMPLEADO" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="NOMBRE_EMPLEADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_DEPARTAMENTO" Type="int" Nullable="false" />
+          <Property Name="ID_PUESTO" Type="int" Nullable="false" />
+          <Property Name="SALARIO_MENSUAL_EMPLEADO" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RESPONSABLE_AREA" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MOVIMIENTO_EMPLEADO">
+          <Key>
+            <PropertyRef Name="ID_MOVIMIENTO" />
+          </Key>
+          <Property Name="ID_MOVIMIENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
+          <Property Name="MONTO_PAGAR" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NIVEL_RIESGO">
+          <Key>
+            <PropertyRef Name="ID_NIVEL_RIESGO" />
+          </Key>
+          <Property Name="ID_NIVEL_RIESGO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIPO_RIESGO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PUESTO">
+          <Key>
+            <PropertyRef Name="ID_PUESTO" />
+          </Key>
+          <Property Name="ID_PUESTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_PUESTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_NIVEL_RIESGO" Type="int" Nullable="false" />
+          <Property Name="NIVEL_SALARIO_MIN" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="NIVEL_SALARIO_MAX" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REGISTRO_TRANSACCION_DEDUCCION">
+          <Key>
+            <PropertyRef Name="ID_TRANSACCION_DEDUCCION" />
+          </Key>
+          <Property Name="ID_TRANSACCION_DEDUCCION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
+          <Property Name="ID_TIPO_DEDUCCION" Type="int" Nullable="false" />
+          <Property Name="FECHA" Type="datetime" />
+          <Property Name="MONTO" Type="numeric" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="REGISTRO_TRANSACCION_INGRESO">
+          <Key>
+            <PropertyRef Name="ID_TRANSACCION_INGRESO" />
+          </Key>
+          <Property Name="ID_TRANSACCION_INGRESO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
+          <Property Name="TIPO_INGRESO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FECHA" Type="datetime" />
+          <Property Name="MONTO" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TIPO_DE_DEDUCCION">
+          <Key>
+            <PropertyRef Name="ID_TIPO_DEDUCCION" />
+          </Key>
+          <Property Name="NOMBRE_TIPO_DEDUCCION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PORCENTAJE" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ID_TIPO_DEDUCCION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SISTEMA_DE_NOMINA.dbo.EMP_CARGO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="EMP_CARGO">
+          <Key>
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_PUESTO" />
+          </Key>
+          <Property Name="NOMBRE_EMPLEADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE_PUESTO" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SISTEMA_DE_NOMINA.dbo.EMP_DEP' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="EMP_DEP">
+          <Key>
+            <PropertyRef Name="ID_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_DEPARTAMENTO" />
+          </Key>
+          <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_EMPLEADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE_DEPARTAMENTO" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SISTEMA_DE_NOMINA.dbo.EMP_RESPONSABLES' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="EMP_RESPONSABLES">
+          <Key>
+            <PropertyRef Name="ID_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="SALARIO_MENSUAL_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_DEPARTAMENTO" />
+            <PropertyRef Name="RESPONSABLE_AREA" />
+          </Key>
+          <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
+          <Property Name="COD_EMPLEADO" Type="varchar" MaxLength="10" />
+          <Property Name="NOMBRE_EMPLEADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SALARIO_MENSUAL_EMPLEADO" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="NOMBRE_DEPARTAMENTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RESPONSABLE_AREA" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SISTEMA_DE_NOMINA.dbo.Historial_Deducciones' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Historial_Deducciones">
+          <Key>
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_TIPO_DEDUCCION" />
+            <PropertyRef Name="MONTO_DEDUCCION" />
+          </Key>
+          <Property Name="NOMBRE_EMPLEADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE_TIPO_DEDUCCION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MONTO_DEDUCCION" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SISTEMA_DE_NOMINA.dbo.HISTORIAL_EMPLEADO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="HISTORIAL_EMPLEADO">
+          <Key>
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="TIPO" />
+          </Key>
+          <Property Name="NOMBRE_EMPLEADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TIPO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MONTO" Type="numeric" Precision="18" Scale="4" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SISTEMA_DE_NOMINA.dbo.historial_ingreso' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="historial_ingreso">
+          <Key>
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="TIPO_INGRESO" />
+            <PropertyRef Name="MONTO_INGRESO" />
+          </Key>
+          <Property Name="NOMBRE_EMPLEADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TIPO_INGRESO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MONTO_INGRESO" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SISTEMA_DE_NOMINA.dbo.PUESTO_RIESGO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="PUESTO_RIESGO">
+          <Key>
+            <PropertyRef Name="NOMBRE_PUESTO" />
+          </Key>
+          <Property Name="NOMBRE_PUESTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TIPO_RIESGO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_EMPLEADO_DEPARTAMENTO1">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADO_PUESTO">
+          <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="1" />
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PUESTO">
+              <PropertyRef Name="ID_PUESTO" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_PUESTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVIMIENTO_EMPLEADO_EMPLEADO">
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+          <End Role="MOVIMIENTO_EMPLEADO" Type="Self.MOVIMIENTO_EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Principal>
+            <Dependent Role="MOVIMIENTO_EMPLEADO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PUESTO_NIVEL_RIESGO">
+          <End Role="NIVEL_RIESGO" Type="Self.NIVEL_RIESGO" Multiplicity="1" />
+          <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NIVEL_RIESGO">
+              <PropertyRef Name="ID_NIVEL_RIESGO" />
+            </Principal>
+            <Dependent Role="PUESTO">
+              <PropertyRef Name="ID_NIVEL_RIESGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO">
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+          <End Role="REGISTRO_TRANSACCION_DEDUCCION" Type="Self.REGISTRO_TRANSACCION_DEDUCCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Principal>
+            <Dependent Role="REGISTRO_TRANSACCION_DEDUCCION">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION1">
+          <End Role="TIPO_DE_DEDUCCION" Type="Self.TIPO_DE_DEDUCCION" Multiplicity="1" />
+          <End Role="REGISTRO_TRANSACCION_DEDUCCION" Type="Self.REGISTRO_TRANSACCION_DEDUCCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_DE_DEDUCCION">
+              <PropertyRef Name="ID_TIPO_DEDUCCION" />
+            </Principal>
+            <Dependent Role="REGISTRO_TRANSACCION_DEDUCCION">
+              <PropertyRef Name="ID_TIPO_DEDUCCION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO">
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+          <End Role="REGISTRO_TRANSACCION_INGRESO" Type="Self.REGISTRO_TRANSACCION_INGRESO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Principal>
+            <Dependent Role="REGISTRO_TRANSACCION_INGRESO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SISTEMA_DE_NOMINAModelStoreContainer">
+          <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOVIMIENTO_EMPLEADO" EntityType="Self.MOVIMIENTO_EMPLEADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NIVEL_RIESGO" EntityType="Self.NIVEL_RIESGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PUESTO" EntityType="Self.PUESTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REGISTRO_TRANSACCION_DEDUCCION" EntityType="Self.REGISTRO_TRANSACCION_DEDUCCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REGISTRO_TRANSACCION_INGRESO" EntityType="Self.REGISTRO_TRANSACCION_INGRESO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_DE_DEDUCCION" EntityType="Self.TIPO_DE_DEDUCCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMP_CARGO" EntityType="Self.EMP_CARGO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EMP_CARGO].[NOMBRE_EMPLEADO] AS [NOMBRE_EMPLEADO], 
+    [EMP_CARGO].[NOMBRE_PUESTO] AS [NOMBRE_PUESTO]
+    FROM [dbo].[EMP_CARGO] AS [EMP_CARGO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EMP_DEP" EntityType="Self.EMP_DEP" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EMP_DEP].[ID_EMPLEADO] AS [ID_EMPLEADO], 
+    [EMP_DEP].[NOMBRE_EMPLEADO] AS [NOMBRE_EMPLEADO], 
+    [EMP_DEP].[NOMBRE_DEPARTAMENTO] AS [NOMBRE_DEPARTAMENTO]
+    FROM [dbo].[EMP_DEP] AS [EMP_DEP]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EMP_RESPONSABLES" EntityType="Self.EMP_RESPONSABLES" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EMP_RESPONSABLES].[ID_EMPLEADO] AS [ID_EMPLEADO], 
+    [EMP_RESPONSABLES].[COD_EMPLEADO] AS [COD_EMPLEADO], 
+    [EMP_RESPONSABLES].[NOMBRE_EMPLEADO] AS [NOMBRE_EMPLEADO], 
+    [EMP_RESPONSABLES].[SALARIO_MENSUAL_EMPLEADO] AS [SALARIO_MENSUAL_EMPLEADO], 
+    [EMP_RESPONSABLES].[NOMBRE_DEPARTAMENTO] AS [NOMBRE_DEPARTAMENTO], 
+    [EMP_RESPONSABLES].[RESPONSABLE_AREA] AS [RESPONSABLE_AREA]
+    FROM [dbo].[EMP_RESPONSABLES] AS [EMP_RESPONSABLES]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Historial_Deducciones" EntityType="Self.Historial_Deducciones" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Historial_Deducciones].[NOMBRE_EMPLEADO] AS [NOMBRE_EMPLEADO], 
+    [Historial_Deducciones].[NOMBRE_TIPO_DEDUCCION] AS [NOMBRE_TIPO_DEDUCCION], 
+    [Historial_Deducciones].[MONTO_DEDUCCION] AS [MONTO_DEDUCCION]
+    FROM [dbo].[Historial_Deducciones] AS [Historial_Deducciones]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HISTORIAL_EMPLEADO" EntityType="Self.HISTORIAL_EMPLEADO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HISTORIAL_EMPLEADO].[NOMBRE_EMPLEADO] AS [NOMBRE_EMPLEADO], 
+    [HISTORIAL_EMPLEADO].[TIPO] AS [TIPO], 
+    [HISTORIAL_EMPLEADO].[MONTO] AS [MONTO]
+    FROM [dbo].[HISTORIAL_EMPLEADO] AS [HISTORIAL_EMPLEADO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="historial_ingreso" EntityType="Self.historial_ingreso" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [historial_ingreso].[NOMBRE_EMPLEADO] AS [NOMBRE_EMPLEADO], 
+    [historial_ingreso].[TIPO_INGRESO] AS [TIPO_INGRESO], 
+    [historial_ingreso].[MONTO_INGRESO] AS [MONTO_INGRESO]
+    FROM [dbo].[historial_ingreso] AS [historial_ingreso]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PUESTO_RIESGO" EntityType="Self.PUESTO_RIESGO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PUESTO_RIESGO].[NOMBRE_PUESTO] AS [NOMBRE_PUESTO], 
+    [PUESTO_RIESGO].[TIPO_RIESGO] AS [TIPO_RIESGO]
+    FROM [dbo].[PUESTO_RIESGO] AS [PUESTO_RIESGO]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_EMPLEADO_DEPARTAMENTO1" Association="Self.FK_EMPLEADO_DEPARTAMENTO1">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADO_PUESTO" Association="Self.FK_EMPLEADO_PUESTO">
+            <End Role="PUESTO" EntitySet="PUESTO" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVIMIENTO_EMPLEADO_EMPLEADO" Association="Self.FK_MOVIMIENTO_EMPLEADO_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="MOVIMIENTO_EMPLEADO" EntitySet="MOVIMIENTO_EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PUESTO_NIVEL_RIESGO" Association="Self.FK_PUESTO_NIVEL_RIESGO">
+            <End Role="NIVEL_RIESGO" EntitySet="NIVEL_RIESGO" />
+            <End Role="PUESTO" EntitySet="PUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO" Association="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="REGISTRO_TRANSACCION_DEDUCCION" EntitySet="REGISTRO_TRANSACCION_DEDUCCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION1" Association="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION1">
+            <End Role="TIPO_DE_DEDUCCION" EntitySet="TIPO_DE_DEDUCCION" />
+            <End Role="REGISTRO_TRANSACCION_DEDUCCION" EntitySet="REGISTRO_TRANSACCION_DEDUCCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO" Association="Self.FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="REGISTRO_TRANSACCION_INGRESO" EntitySet="REGISTRO_TRANSACCION_INGRESO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SISTEMA_DE_NOMINAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="ID_DEPARTAMENTO" />
+          </Key>
+          <Property Name="ID_DEPARTAMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_DEPARTAMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UBICACION_FISICA_DEPARTAMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_EMPLEADO_DEPARTAMENTO1" FromRole="DEPARTAMENTO" ToRole="EMPLEADO" />
+        </EntityType>
+        <EntityType Name="EMPLEADO">
+          <Key>
+            <PropertyRef Name="ID_EMPLEADO" />
+          </Key>
+          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COD_EMPLEADO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CEDULA_EMPLEADO" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_EMPLEADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_DEPARTAMENTO" Type="Int32" Nullable="false" />
+          <Property Name="ID_PUESTO" Type="Int32" Nullable="false" />
+          <Property Name="SALARIO_MENSUAL_EMPLEADO" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RESPONSABLE_AREA" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.FK_EMPLEADO_DEPARTAMENTO1" FromRole="EMPLEADO" ToRole="DEPARTAMENTO" />
+          <NavigationProperty Name="PUESTO" Relationship="Self.FK_EMPLEADO_PUESTO" FromRole="EMPLEADO" ToRole="PUESTO" />
+          <NavigationProperty Name="MOVIMIENTO_EMPLEADO" Relationship="Self.FK_MOVIMIENTO_EMPLEADO_EMPLEADO" FromRole="EMPLEADO" ToRole="MOVIMIENTO_EMPLEADO" />
+          <NavigationProperty Name="REGISTRO_TRANSACCION_DEDUCCION" Relationship="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO" FromRole="EMPLEADO" ToRole="REGISTRO_TRANSACCION_DEDUCCION" />
+          <NavigationProperty Name="REGISTRO_TRANSACCION_INGRESO" Relationship="SISTEMA_DE_NOMINAModel.FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO" FromRole="EMPLEADO" ToRole="REGISTRO_TRANSACCION_INGRESO" />
+        </EntityType>
+        <EntityType Name="MOVIMIENTO_EMPLEADO">
+          <Key>
+            <PropertyRef Name="ID_MOVIMIENTO" />
+          </Key>
+          <Property Name="ID_MOVIMIENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+          <Property Name="MONTO_PAGAR" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_MOVIMIENTO_EMPLEADO_EMPLEADO" FromRole="MOVIMIENTO_EMPLEADO" ToRole="EMPLEADO" />
+        </EntityType>
+        <EntityType Name="NIVEL_RIESGO">
+          <Key>
+            <PropertyRef Name="ID_NIVEL_RIESGO" />
+          </Key>
+          <Property Name="ID_NIVEL_RIESGO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIPO_RIESGO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PUESTO" Relationship="Self.FK_PUESTO_NIVEL_RIESGO" FromRole="NIVEL_RIESGO" ToRole="PUESTO" />
+        </EntityType>
+        <EntityType Name="PUESTO">
+          <Key>
+            <PropertyRef Name="ID_PUESTO" />
+          </Key>
+          <Property Name="ID_PUESTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_PUESTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_NIVEL_RIESGO" Type="Int32" Nullable="false" />
+          <Property Name="NIVEL_SALARIO_MIN" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="NIVEL_SALARIO_MAX" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_EMPLEADO_PUESTO" FromRole="PUESTO" ToRole="EMPLEADO" />
+          <NavigationProperty Name="NIVEL_RIESGO" Relationship="Self.FK_PUESTO_NIVEL_RIESGO" FromRole="PUESTO" ToRole="NIVEL_RIESGO" />
+        </EntityType>
+        <EntityType Name="REGISTRO_TRANSACCION_DEDUCCION">
+          <Key>
+            <PropertyRef Name="ID_TRANSACCION_DEDUCCION" />
+          </Key>
+          <Property Name="ID_TRANSACCION_DEDUCCION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+          <Property Name="ID_TIPO_DEDUCCION" Type="Int32" Nullable="false" />
+          <Property Name="FECHA" Type="DateTime" Precision="3" />
+          <Property Name="MONTO" Type="Decimal" Precision="18" Scale="4" />
+          <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO" FromRole="REGISTRO_TRANSACCION_DEDUCCION" ToRole="EMPLEADO" />
+          <NavigationProperty Name="TIPO_DE_DEDUCCION" Relationship="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION" FromRole="REGISTRO_TRANSACCION_DEDUCCION" ToRole="TIPO_DE_DEDUCCION" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TIPO_DE_DEDUCCION">
+          <Key>
+            <PropertyRef Name="ID_TIPO_DEDUCCION" />
+          </Key>
+          <Property Name="ID_TIPO_DEDUCCION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_TIPO_DEDUCCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PORCENTAJE" Type="Decimal" Precision="18" Scale="4" />
+          <NavigationProperty Name="REGISTRO_TRANSACCION_DEDUCCION" Relationship="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION" FromRole="TIPO_DE_DEDUCCION" ToRole="REGISTRO_TRANSACCION_DEDUCCION" />
+        </EntityType>
+        <Association Name="FK_EMPLEADO_DEPARTAMENTO1">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADO_PUESTO">
+          <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="1" />
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PUESTO">
+              <PropertyRef Name="ID_PUESTO" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_PUESTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVIMIENTO_EMPLEADO_EMPLEADO">
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+          <End Role="MOVIMIENTO_EMPLEADO" Type="Self.MOVIMIENTO_EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Principal>
+            <Dependent Role="MOVIMIENTO_EMPLEADO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO">
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+          <End Role="REGISTRO_TRANSACCION_DEDUCCION" Type="Self.REGISTRO_TRANSACCION_DEDUCCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Principal>
+            <Dependent Role="REGISTRO_TRANSACCION_DEDUCCION">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PUESTO_NIVEL_RIESGO">
+          <End Role="NIVEL_RIESGO" Type="Self.NIVEL_RIESGO" Multiplicity="1" />
+          <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NIVEL_RIESGO">
+              <PropertyRef Name="ID_NIVEL_RIESGO" />
+            </Principal>
+            <Dependent Role="PUESTO">
+              <PropertyRef Name="ID_NIVEL_RIESGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION">
+          <End Role="TIPO_DE_DEDUCCION" Type="Self.TIPO_DE_DEDUCCION" Multiplicity="1" />
+          <End Role="REGISTRO_TRANSACCION_DEDUCCION" Type="Self.REGISTRO_TRANSACCION_DEDUCCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_DE_DEDUCCION">
+              <PropertyRef Name="ID_TIPO_DEDUCCION" />
+            </Principal>
+            <Dependent Role="REGISTRO_TRANSACCION_DEDUCCION">
+              <PropertyRef Name="ID_TIPO_DEDUCCION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SISTEMA_DE_NOMINAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" />
+          <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" />
+          <EntitySet Name="MOVIMIENTO_EMPLEADO" EntityType="Self.MOVIMIENTO_EMPLEADO" />
+          <EntitySet Name="NIVEL_RIESGO" EntityType="Self.NIVEL_RIESGO" />
+          <EntitySet Name="PUESTO" EntityType="Self.PUESTO" />
+          <EntitySet Name="REGISTRO_TRANSACCION_DEDUCCION" EntityType="Self.REGISTRO_TRANSACCION_DEDUCCION" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TIPO_DE_DEDUCCION" EntityType="Self.TIPO_DE_DEDUCCION" />
+          <AssociationSet Name="FK_EMPLEADO_DEPARTAMENTO1" Association="Self.FK_EMPLEADO_DEPARTAMENTO1">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADO_PUESTO" Association="Self.FK_EMPLEADO_PUESTO">
+            <End Role="PUESTO" EntitySet="PUESTO" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVIMIENTO_EMPLEADO_EMPLEADO" Association="Self.FK_MOVIMIENTO_EMPLEADO_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="MOVIMIENTO_EMPLEADO" EntitySet="MOVIMIENTO_EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO" Association="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="REGISTRO_TRANSACCION_DEDUCCION" EntitySet="REGISTRO_TRANSACCION_DEDUCCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PUESTO_NIVEL_RIESGO" Association="Self.FK_PUESTO_NIVEL_RIESGO">
+            <End Role="NIVEL_RIESGO" EntitySet="NIVEL_RIESGO" />
+            <End Role="PUESTO" EntitySet="PUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION" Association="Self.FK_REGISTRO_TRANSACCION_DEDUCCION_TIPO_DE_DEDUCCION">
+            <End Role="TIPO_DE_DEDUCCION" EntitySet="TIPO_DE_DEDUCCION" />
+            <End Role="REGISTRO_TRANSACCION_DEDUCCION" EntitySet="REGISTRO_TRANSACCION_DEDUCCION" />
+          </AssociationSet>
+          <EntitySet Name="Historial_Deducciones" EntityType="SISTEMA_DE_NOMINAModel.Historial_Deducciones" />
+          <EntitySet Name="EMP_CARGO" EntityType="SISTEMA_DE_NOMINAModel.EMP_CARGO" />
+          <EntitySet Name="EMP_DEP" EntityType="SISTEMA_DE_NOMINAModel.EMP_DEP" />
+          <EntitySet Name="EMP_RESPONSABLES" EntityType="SISTEMA_DE_NOMINAModel.EMP_RESPONSABLES" />
+          <EntitySet Name="PUESTO_RIESGO" EntityType="SISTEMA_DE_NOMINAModel.PUESTO_RIESGO" />
+          <EntitySet Name="REGISTRO_TRANSACCION_INGRESO" EntityType="SISTEMA_DE_NOMINAModel.REGISTRO_TRANSACCION_INGRESO" />
+          <AssociationSet Name="FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO" Association="SISTEMA_DE_NOMINAModel.FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="REGISTRO_TRANSACCION_INGRESO" EntitySet="REGISTRO_TRANSACCION_INGRESO" />
+          </AssociationSet>
+          <EntitySet Name="historial_ingreso" EntityType="SISTEMA_DE_NOMINAModel.historial_ingreso" />
+          <EntitySet Name="HISTORIAL_EMPLEADO" EntityType="SISTEMA_DE_NOMINAModel.HISTORIAL_EMPLEADO" />
+        </EntityContainer>
+        <EntityType Name="Historial_Deducciones">
+          <Key>
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_TIPO_DEDUCCION" />
+            <PropertyRef Name="MONTO_DEDUCCION" />
+          </Key>
+          <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_TIPO_DEDUCCION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MONTO_DEDUCCION" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="EMP_CARGO">
+          <Key>
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_PUESTO" />
+          </Key>
+          <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_PUESTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EMP_DEP">
+          <Key>
+            <PropertyRef Name="ID_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_DEPARTAMENTO" />
+          </Key>
+          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_DEPARTAMENTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EMP_RESPONSABLES">
+          <Key>
+            <PropertyRef Name="ID_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="SALARIO_MENSUAL_EMPLEADO" />
+            <PropertyRef Name="NOMBRE_DEPARTAMENTO" />
+            <PropertyRef Name="RESPONSABLE_AREA" />
+          </Key>
+          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+          <Property Name="COD_EMPLEADO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SALARIO_MENSUAL_EMPLEADO" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="NOMBRE_DEPARTAMENTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RESPONSABLE_AREA" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PUESTO_RIESGO">
+          <Key>
+            <PropertyRef Name="NOMBRE_PUESTO" />
+          </Key>
+          <Property Name="NOMBRE_PUESTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_RIESGO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="REGISTRO_TRANSACCION_INGRESO">
+          <Key>
+            <PropertyRef Name="ID_TRANSACCION_INGRESO" />
+          </Key>
+          <Property Name="ID_TRANSACCION_INGRESO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+          <Property Name="TIPO_INGRESO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" Precision="3" />
+          <Property Name="MONTO" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <NavigationProperty Name="EMPLEADO" Relationship="SISTEMA_DE_NOMINAModel.FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO" FromRole="REGISTRO_TRANSACCION_INGRESO" ToRole="EMPLEADO" />
+        </EntityType>
+        <Association Name="FK_REGISTRO_TRANSACCION_INGRESO_EMPLEADO">
+          <End Type="SISTEMA_DE_NOMINAModel.EMPLEADO" Role="EMPLEADO" Multiplicity="1" />
+          <End Type="SISTEMA_DE_NOMINAModel.REGISTRO_TRANSACCION_INGRESO" Role="REGISTRO_TRANSACCION_INGRESO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Principal>
+            <Dependent Role="REGISTRO_TRANSACCION_INGRESO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="historial_ingreso">
+          <Key>
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+            <PropertyRef Name="TIPO_INGRESO" />
+            <PropertyRef Name="MONTO_INGRESO" />
+          </Key>
+          <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_INGRESO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MONTO_INGRESO" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="HISTORIAL_EMPLEADO">
+          <Key>
+            <PropertyRef Name="TIPO" />
+            <PropertyRef Name="NOMBRE_EMPLEADO" />
+          </Key>
+          <Property Name="TIPO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MONTO" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="NOMBRE_EMPLEADO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SISTEMA_DE_NOMINAModelStoreContainer" CdmEntityContainer="SISTEMA_DE_NOMINAEntities">
+          <EntitySetMapping Name="DEPARTAMENTO">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.DEPARTAMENTO">
+              <MappingFragment StoreEntitySet="DEPARTAMENTO">
+                <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+                <ScalarProperty Name="NOMBRE_DEPARTAMENTO" ColumnName="NOMBRE_DEPARTAMENTO" />
+                <ScalarProperty Name="UBICACION_FISICA_DEPARTAMENTO" ColumnName="UBICACION_FISICA_DEPARTAMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLEADO">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.EMPLEADO">
+              <MappingFragment StoreEntitySet="EMPLEADO">
+                <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+                <ScalarProperty Name="COD_EMPLEADO" ColumnName="COD_EMPLEADO" />
+                <ScalarProperty Name="CEDULA_EMPLEADO" ColumnName="CEDULA_EMPLEADO" />
+                <ScalarProperty Name="NOMBRE_EMPLEADO" ColumnName="NOMBRE_EMPLEADO" />
+                <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+                <ScalarProperty Name="ID_PUESTO" ColumnName="ID_PUESTO" />
+                <ScalarProperty Name="SALARIO_MENSUAL_EMPLEADO" ColumnName="SALARIO_MENSUAL_EMPLEADO" />
+                <ScalarProperty Name="RESPONSABLE_AREA" ColumnName="RESPONSABLE_AREA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIMIENTO_EMPLEADO">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.MOVIMIENTO_EMPLEADO">
+              <MappingFragment StoreEntitySet="MOVIMIENTO_EMPLEADO">
+                <ScalarProperty Name="ID_MOVIMIENTO" ColumnName="ID_MOVIMIENTO" />
+                <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+                <ScalarProperty Name="MONTO_PAGAR" ColumnName="MONTO_PAGAR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NIVEL_RIESGO">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.NIVEL_RIESGO">
+              <MappingFragment StoreEntitySet="NIVEL_RIESGO">
+                <ScalarProperty Name="ID_NIVEL_RIESGO" ColumnName="ID_NIVEL_RIESGO" />
+                <ScalarProperty Name="TIPO_RIESGO" ColumnName="TIPO_RIESGO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PUESTO">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.PUESTO">
+              <MappingFragment StoreEntitySet="PUESTO">
+                <ScalarProperty Name="ID_PUESTO" ColumnName="ID_PUESTO" />
+                <ScalarProperty Name="NOMBRE_PUESTO" ColumnName="NOMBRE_PUESTO" />
+                <ScalarProperty Name="ID_NIVEL_RIESGO" ColumnName="ID_NIVEL_RIESGO" />
+                <ScalarProperty Name="NIVEL_SALARIO_MIN" ColumnName="NIVEL_SALARIO_MIN" />
+                <ScalarProperty Name="NIVEL_SALARIO_MAX" ColumnName="NIVEL_SALARIO_MAX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REGISTRO_TRANSACCION_DEDUCCION">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.REGISTRO_TRANSACCION_DEDUCCION">
+              <MappingFragment StoreEntitySet="REGISTRO_TRANSACCION_DEDUCCION">
+                <ScalarProperty Name="ID_TRANSACCION_DEDUCCION" ColumnName="ID_TRANSACCION_DEDUCCION" />
+                <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+                <ScalarProperty Name="ID_TIPO_DEDUCCION" ColumnName="ID_TIPO_DEDUCCION" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_DE_DEDUCCION">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.TIPO_DE_DEDUCCION">
+              <MappingFragment StoreEntitySet="TIPO_DE_DEDUCCION">
+                <ScalarProperty Name="ID_TIPO_DEDUCCION" ColumnName="ID_TIPO_DEDUCCION" />
+                <ScalarProperty Name="NOMBRE_TIPO_DEDUCCION" ColumnName="NOMBRE_TIPO_DEDUCCION" />
+                <ScalarProperty Name="PORCENTAJE" ColumnName="PORCENTAJE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historial_Deducciones">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.Historial_Deducciones">
+              <MappingFragment StoreEntitySet="Historial_Deducciones">
+                <ScalarProperty Name="MONTO_DEDUCCION" ColumnName="MONTO_DEDUCCION" />
+                <ScalarProperty Name="NOMBRE_TIPO_DEDUCCION" ColumnName="NOMBRE_TIPO_DEDUCCION" />
+                <ScalarProperty Name="NOMBRE_EMPLEADO" ColumnName="NOMBRE_EMPLEADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMP_CARGO">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.EMP_CARGO">
+              <MappingFragment StoreEntitySet="EMP_CARGO">
+                <ScalarProperty Name="NOMBRE_PUESTO" ColumnName="NOMBRE_PUESTO" />
+                <ScalarProperty Name="NOMBRE_EMPLEADO" ColumnName="NOMBRE_EMPLEADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMP_DEP">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.EMP_DEP">
+              <MappingFragment StoreEntitySet="EMP_DEP">
+                <ScalarProperty Name="NOMBRE_DEPARTAMENTO" ColumnName="NOMBRE_DEPARTAMENTO" />
+                <ScalarProperty Name="NOMBRE_EMPLEADO" ColumnName="NOMBRE_EMPLEADO" />
+                <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMP_RESPONSABLES">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.EMP_RESPONSABLES">
+              <MappingFragment StoreEntitySet="EMP_RESPONSABLES">
+                <ScalarProperty Name="RESPONSABLE_AREA" ColumnName="RESPONSABLE_AREA" />
+                <ScalarProperty Name="NOMBRE_DEPARTAMENTO" ColumnName="NOMBRE_DEPARTAMENTO" />
+                <ScalarProperty Name="SALARIO_MENSUAL_EMPLEADO" ColumnName="SALARIO_MENSUAL_EMPLEADO" />
+                <ScalarProperty Name="NOMBRE_EMPLEADO" ColumnName="NOMBRE_EMPLEADO" />
+                <ScalarProperty Name="COD_EMPLEADO" ColumnName="COD_EMPLEADO" />
+                <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PUESTO_RIESGO">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.PUESTO_RIESGO">
+              <MappingFragment StoreEntitySet="PUESTO_RIESGO">
+                <ScalarProperty Name="TIPO_RIESGO" ColumnName="TIPO_RIESGO" />
+                <ScalarProperty Name="NOMBRE_PUESTO" ColumnName="NOMBRE_PUESTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REGISTRO_TRANSACCION_INGRESO">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.REGISTRO_TRANSACCION_INGRESO">
+              <MappingFragment StoreEntitySet="REGISTRO_TRANSACCION_INGRESO">
+                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="TIPO_INGRESO" ColumnName="TIPO_INGRESO" />
+                <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+                <ScalarProperty Name="ID_TRANSACCION_INGRESO" ColumnName="ID_TRANSACCION_INGRESO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historial_ingreso">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.historial_ingreso">
+              <MappingFragment StoreEntitySet="historial_ingreso">
+                <ScalarProperty Name="MONTO_INGRESO" ColumnName="MONTO_INGRESO" />
+                <ScalarProperty Name="TIPO_INGRESO" ColumnName="TIPO_INGRESO" />
+                <ScalarProperty Name="NOMBRE_EMPLEADO" ColumnName="NOMBRE_EMPLEADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORIAL_EMPLEADO">
+            <EntityTypeMapping TypeName="SISTEMA_DE_NOMINAModel.HISTORIAL_EMPLEADO">
+              <MappingFragment StoreEntitySet="HISTORIAL_EMPLEADO">
+                <ScalarProperty Name="NOMBRE_EMPLEADO" ColumnName="NOMBRE_EMPLEADO" />
+                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

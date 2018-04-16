@@ -1,0 +1,26 @@
+﻿@model SISTEMANOMINA.NIVEL_RIESGO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NIVEL_RIESGO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_RIESGO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_RIESGO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_NIVEL_RIESGO }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
